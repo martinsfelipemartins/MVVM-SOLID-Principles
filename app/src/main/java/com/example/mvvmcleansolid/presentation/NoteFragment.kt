@@ -41,8 +41,8 @@ class NoteFragment : Fragment() {
             if (binding.editTextContent.text.toString() != "" || binding.editTextTitle.text.toString() != "") {
                 val time = System.currentTimeMillis()
                 currentNote = Note(
-                    title = binding.editTextTitle.toString(),
-                    content = binding.editTextContent.toString(),
+                    title = binding.editTextTitle.text.toString(),
+                    content = binding.editTextContent.text.toString(),
                     creationTime = time,
                     updateTime = time
                 )
