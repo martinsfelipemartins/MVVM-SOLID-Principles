@@ -10,9 +10,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmcleansolid.databinding.FragmentNoteListBinding
 
-class NoteListFragment : Fragment() {
+class NoteListFragment : Fragment(), ListAction {
     lateinit var viewModel: NoteListViewModel
-    private val notesListAdapter = NotesListAdapter(arrayListOf())
+    private val notesListAdapter = NotesListAdapter(arrayListOf(), this
+    )
 
     lateinit var binding: FragmentNoteListBinding
     override fun onCreateView(
@@ -55,5 +56,9 @@ class NoteListFragment : Fragment() {
     private fun goToNoteDetails(noteID: Long = 0){
         val action =  NoteListFragmentDirections.actionNoteListFragmentToNoteFragment(noteID)
         Navigation.findNavController(binding.floatingActionButtonAdd).navigate(action)
+    }
+
+    override fun onClick(id: Long) {
+        goToNoteDetails(id)
     }
 }

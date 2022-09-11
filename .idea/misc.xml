@@ -6,7 +6,8 @@
         <entry key="..\:/mvvmcleansolid/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/mvvmcleansolid/app/src/main/res/layout/fragment_note.xml" value="0.141015625" />
         <entry key="..\:/mvvmcleansolid/app/src/main/res/layout/fragment_note_list.xml" value="0.18802083333333333" />
-        <entry key="..\:/mvvmcleansolid/app/src/main/res/layout/item_note.xml" value="0.5" />
+        <entry key="..\:/mvvmcleansolid/app/src/main/res/layout/item_note.xml" value="0.35645472061657035" />
+        <entry key="..\:/mvvmcleansolid/app/src/main/res/menu/note_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

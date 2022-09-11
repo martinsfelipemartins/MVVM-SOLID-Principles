@@ -22,7 +22,8 @@ data class NoteEntity(
             title = note.title,
             content = note.content,
             creationTime = note.creationTime,
-            updateTime = note.updateTime
+            updateTime = note.updateTime,
+            id = note.id
         )
     }
     fun toNote() = Note(title = title, id = id, content = content, creationTime = creationTime, updateTime = updateTime)

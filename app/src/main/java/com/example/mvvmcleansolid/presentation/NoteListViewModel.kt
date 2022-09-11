@@ -11,27 +11,37 @@ import com.example.core.usecase.GetNote
 import com.example.core.usecase.RemoveNote
 import com.example.mvvmcleansolid.framework.RoomNoteDatabase
 import com.example.mvvmcleansolid.framework.UseCases
+import com.example.mvvmcleansolid.framework.di.ApplicationModule
+import com.example.mvvmcleansolid.framework.di.DaggerViewModelComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class NoteListViewModel(application: Application): AndroidViewModel(application) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
-    private val repository = NoteRepository(RoomNoteDatabase(application))
     val noteList = MutableLiveData<List<Note>>()
 
-    private val useCases = UseCases(
-        AddNote(repository),
-        GetAllNotes(repository),
-        GetNote(repository),
-        RemoveNote(repository)
-    )
+    init {
+        DaggerViewModelComponent.builder()
+            .applicationModule(ApplicationModule(application))
+            .build()
+            .inject(this)
+    }
+
+    @Inject
+    lateinit var useCases : UseCases
+
 
     fun getNoteList(){
         coroutineScope.launch {
             val list = useCases.getAllNotes()
+            list.forEach{
+                it.countWord = useCases.getWordCount.invoke(it)
+            }
             noteList.postValue(list)
         }
     }
+
 }
